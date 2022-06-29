@@ -1,0 +1,10 @@
+{
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json",
+  "version": 2,
+  "projects": {
+    "api": "apps/api",
+    "api-interfaces": "libs/api-interfaces",
+    "joke-dadabase": "apps/joke-dadabase",
+    "joke-dadabase-e2e": "apps/joke-dadabase-e2e"
+  }
+}
