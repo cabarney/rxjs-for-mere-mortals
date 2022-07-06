@@ -12,5 +12,6 @@ export interface JokeResponse {
 export interface PagedQuery {
   pageIndex: number;
   pageSize: number;
+  searchTerm?: string;
   category?: string;
 }

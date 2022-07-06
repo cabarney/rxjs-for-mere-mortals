@@ -1,6 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
-
-import { Message } from '@joke-dadabase/api-interfaces';
+import { Joke, JokeResponse, PagedQuery } from '@joke-dadabase/api-interfaces';
+import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Observable } from 'rxjs';
 
 import { AppService } from './app.service';
 
@@ -8,8 +8,18 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get('hello')
-  getData(): Message {
-    return this.appService.getData();
+  @Get('jokes')
+  getData(@Query() query: PagedQuery): Observable<JokeResponse> {
+    return this.appService.getJokes(query);
+  }
+
+  @Get('joke/:id')
+  getJoke(@Param('id') id: number): Joke {
+    return this.appService.getJoke(+id);
+  }
+
+  @Get('joke/:id/related')
+  getRelatedJokes(@Param('id') id: number): Joke[] {
+    return this.appService.getRelatedJokes(+id);
   }
 }
