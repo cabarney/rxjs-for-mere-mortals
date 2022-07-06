@@ -4,7 +4,6 @@
   "projects": {
     "api": "apps/api",
     "api-interfaces": "libs/api-interfaces",
-    "joke-dadabase": "apps/joke-dadabase",
-    "joke-dadabase-e2e": "apps/joke-dadabase-e2e"
+    "joke-dadabase": "apps/joke-dadabase"
   }
 }
