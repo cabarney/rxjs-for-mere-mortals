@@ -14,7 +14,11 @@
         <option value="sick">Sick</option>
       </select>
     </div>
-
+    <div>
+      <div *ngFor="let joke of jokes" class="joke">
+        {{ joke.joke }}
+      </div>
+    </div>
   </div>
   <div class="half">
 

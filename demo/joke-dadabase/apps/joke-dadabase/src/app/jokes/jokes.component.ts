@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Joke, JokeResponse } from '@joke-dadabase/api-interfaces';
+import { JokeService } from '../joke.service';
 
 @Component({
   selector: 'joke-dadabase-jokes',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./jokes.component.scss']
 })
 export class JokesComponent implements OnInit {
+  jokes: Joke[] = [];
 
-  constructor() { }
+  constructor(private service: JokeService) { }
 
   ngOnInit(): void {
+    this.service.getJokes({ pageIndex: 0, pageSize: 10, category: '', searchTerm: '' })
+      .subscribe((jokes: JokeResponse) => this.jokes = jokes.result);
   }
-
 }
