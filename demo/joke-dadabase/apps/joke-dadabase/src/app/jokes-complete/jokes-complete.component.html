@@ -1,0 +1,44 @@
+<h1>The Joke <em>Dada</em>base</h1>
+<div class="container">
+  <div class="half">
+    <div>
+      <input type="text" id="search-box">
+    </div>
+    <div>
+      <select id="category">
+        <option value="">All</option>
+        <option value="punny">Punny</option>
+        <option value="groaner">Groaner</option>
+        <option value="parenting">Parenting</option>
+        <option value="wife">Wife</option>
+        <option value="sick">Sick</option>
+      </select>
+    </div>
+    <div *ngIf="service.loading$ | async">LOADING...</div>
+    <div *ngIf="service.jokes$ | async as jokes">
+      <div *ngIf="pageInfo$ | async as pageInfo">
+        <span *ngFor="let page of pageInfo.pages">
+          <a *ngIf="page !== pageInfo.page" href="#" (click)="pageIndex$.next(page)">{{ page + 1 }}</a> &nbsp;
+          <span *ngIf="pageInfo.page === page"> | Page {{pageInfo.page + 1}} of {{pageInfo.totalPages}} | </span>
+        </span>
+      </div>
+      <div *ngIf="(service.loading$ | async) === false">
+        <div *ngFor="let joke of jokes" class="joke" (click)="onJokeSelect(joke.id)">
+          {{ joke.joke }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="half">
+    <div *ngIf="service.detailLoading$ | async">LOADING...</div>
+    <div *ngIf="service.jokeDetail$ | async as joke">
+      <div *ngIf="(service.detailLoading$ | async) === false">
+        <h2>{{ joke.joke }}</h2>
+        <h4>Related Jokes:</h4>
+        <div *ngFor="let related of joke.related" class="joke">
+          {{ related.joke }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

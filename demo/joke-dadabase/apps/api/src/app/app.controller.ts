@@ -14,12 +14,12 @@ export class AppController {
   }
 
   @Get('joke/:id')
-  getJoke(@Param('id') id: number): Joke {
+  getJoke(@Param('id') id: number): Observable<Joke> {
     return this.appService.getJoke(+id);
   }
 
   @Get('joke/:id/related')
-  getRelatedJokes(@Param('id') id: number): Joke[] {
+  getRelatedJokes(@Param('id') id: number): Observable<Joke[]> {
     return this.appService.getRelatedJokes(+id);
   }
 }
