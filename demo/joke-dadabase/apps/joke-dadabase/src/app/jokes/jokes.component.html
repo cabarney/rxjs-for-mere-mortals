@@ -15,7 +15,8 @@
       </select>
     </div>
     <div>
-      <div *ngFor="let joke of jokes" class="joke">
+      <h5>{{ total$ | async }}</h5>
+      <div *ngFor="let joke of jokes$ | async" class="joke">
         {{ joke.joke }}
       </div>
     </div>
